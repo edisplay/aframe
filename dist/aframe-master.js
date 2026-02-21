@@ -15850,10 +15850,12 @@ var Component = (0,_core_component_js__WEBPACK_IMPORTED_MODULE_0__.registerCompo
     var flippedPixels = pixels.slice(0);
     for (var x = 0; x < width; ++x) {
       for (var y = 0; y < height; ++y) {
-        flippedPixels[x * 4 + y * width * 4] = pixels[x * 4 + (height - y) * width * 4];
-        flippedPixels[x * 4 + 1 + y * width * 4] = pixels[x * 4 + 1 + (height - y) * width * 4];
-        flippedPixels[x * 4 + 2 + y * width * 4] = pixels[x * 4 + 2 + (height - y) * width * 4];
-        flippedPixels[x * 4 + 3 + y * width * 4] = pixels[x * 4 + 3 + (height - y) * width * 4];
+        var from = x * 4 + (height - y - 1) * width * 4;
+        var to = x * 4 + y * width * 4;
+        flippedPixels[to] = pixels[from];
+        flippedPixels[to + 1] = pixels[from + 1];
+        flippedPixels[to + 2] = pixels[from + 2];
+        flippedPixels[to + 3] = pixels[from + 3];
       }
     }
     return flippedPixels;
@@ -61733,7 +61735,7 @@ if (_utils_index_js__WEBPACK_IMPORTED_MODULE_16__.device.isBrowserEnvironment) {
   window.logs = debug;
   __webpack_require__(/*! ./style/aframe.css */ "./src/style/aframe.css");
 }
-console.log('A-Frame Version: 1.7.1 (Date 2025-12-19, Commit #53d5b3db)');
+console.log('A-Frame Version: 1.7.1 (Date 2026-02-21, Commit #d2e94756)');
 console.log('THREE Version (https://github.com/supermedium/three.js):', _lib_three_js__WEBPACK_IMPORTED_MODULE_1__["default"].REVISION);
 
 // Wait for ready state, unless user asynchronously initializes A-Frame.
